@@ -1,4 +1,5 @@
-import { SampleModal } from 'SampleModal';
+import { ModelWithDefaultControls } from 'ModalWithDefaultControls';
+import { ModalWithSuggestComponent } from 'ModalWithSuggestComponent';
 import { SampleSettingTab } from 'SampleSettingTab';
 import { Editor, MarkdownView, Notice, Plugin } from 'obsidian';
 
@@ -35,9 +36,10 @@ export default class MyPlugin extends Plugin {
 			id: 'open-sample-modal-simple',
 			name: 'Open sample modal (simple)',
 			callback: () => {
-				new SampleModal(this.app).open();
+				new ModalWithSuggestComponent(this.app).open();
 			}
 		});
+		
 		// This adds an editor command that can perform some operation on the current editor instance
 		this.addCommand({
 			id: 'sample-editor-command',
@@ -58,7 +60,7 @@ export default class MyPlugin extends Plugin {
 					// If checking is true, we're simply "checking" if the command can be run.
 					// If checking is false, then we want to actually perform the operation.
 					if (!checking) {
-						new SampleModal(this.app).open();
+						new ModalWithSuggestComponent(this.app).open();
 					}
 
 					// This command will only show up in Command Palette when the check function returns true
@@ -77,7 +79,17 @@ export default class MyPlugin extends Plugin {
 		});
 
 		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
+		//this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
+
+
+		this.addCommand({
+			id: 'open-sample-modal-with-default-controls',
+			name: 'Open modal with default controls',
+			callback: () => {
+				new ModelWithDefaultControls(this.app).open();
+			}
+		});
+
 	}
 
 	onunload() {
