@@ -1,3 +1,5 @@
+import { EditorSuggestSample } from 'EditorSuggestSample';
+import { IPluginContext } from 'IPluginContext';
 import { SampleModal } from 'SampleModal';
 import { SampleSettingTab } from 'SampleSettingTab';
 import { Editor, MarkdownView, Notice, Plugin } from 'obsidian';
@@ -14,9 +16,12 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
 
 export default class MyPlugin extends Plugin {
 	settings: MyPluginSettings;
+	context: IPluginContext;
 
 	async onload() {
+		this.context = {App: this.app};
 		await this.loadSettings();
+		this.registerEditorSuggest(new EditorSuggestSample(this.context));
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
