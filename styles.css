@@ -6,3 +6,12 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+
+.setting-border{
+    border: 1px solid black;
+}
+
+.note-path{
+    color:grey;
+    font-size: smaller;
+}

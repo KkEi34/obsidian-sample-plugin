@@ -1,5 +1,5 @@
 import { App, ButtonComponent, DropdownComponent, Modal, SearchComponent, Setting } from 'obsidian';
-import { GenericTextSuggester } from 'GenericTextSuggester';
+import { GenericTextSuggester } from 'suggesters/GenericTextSuggester';
 
 
 const LocDescMap: Record<string, string> = {
